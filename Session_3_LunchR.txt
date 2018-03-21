@@ -114,18 +114,8 @@ str(dat)
 
 # Mutate example ####
 
-dat <- dat %>% 
-           mutate(reading_no_num= ifelse(reading_no=="X1", 1,
-                                  ifelse(reading_no=="X2", 2,
-                                  ifelse(reading_no=="X3", 3,
-                                  ifelse(reading_no=="X4", 4,
-                                  ifelse(reading_no=="X5", 5,
-                                  ifelse(reading_no=="X6", 6,
-                                  ifelse(reading_no=="X7", 7,
-                                  ifelse(reading_no=="X8", 8,
-                                  ifelse(reading_no=="X9", 9, NA)))))))))) 
-
-
+dat_gsub <- dat %>%
+  mutate(reading_no_gsub = as.numeric(gsub("X","",reading_no)))
 
 ## Looks correct!
 ggplot(dat, aes(reading_no, factor(reading_no_num))) + geom_point()
